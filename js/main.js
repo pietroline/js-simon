@@ -10,3 +10,5 @@ for(let i=0; i<5; i++){
     numeri[i] = random(0,99);
 }
 
+//append dell'arrray numeri sul DOM
+document.getElementById("numeri").innerHTML = numeri;
