@@ -15,8 +15,16 @@ function random(max, min){
 //creo un array di elementi casuali
 const numeri = [];
 for(let i=0; i<5; i++){
-    numeri[i] = random(0,99);
+    let casuale = random(0,99); 
+    numeri[i] = casuale;
 }
+
+// while(numeri.length < 5){
+//     let casuale = random(0,5); 
+//     if(!numeri.includes(casuale)){
+//         numeri.push(casuale);
+//     }
+// }
 
 console.log("numeri casuali: "+numeri)
 
@@ -37,19 +45,21 @@ setTimeout(function(){
     let numeriRicordati = [];
     let numeriCorretti =[];
     for(let i=0; i<5; i++){
-
-        numeriRicordati[i] = prompt(`Inserisci il ${i+1}° numero che ricordi`);
+      
+        numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi`));
         if(numeri.includes(numeriRicordati[i])){
             numeriCorretti.push(numeriRicordati[i]);
         }
-
+        console.log(numeriRicordati[i]);
     }
 
     console.log("Numeri ricordati: " + numeriRicordati);
     console.log("Numeri corretti: " + numeriCorretti);
 
+        
 
-}, 20000);
+
+}, 2000);
 
 
     
