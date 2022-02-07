@@ -42,13 +42,14 @@ setTimeout(function(){
         if(numeri.includes(numeriRicordati[i])){
             numeriCorretti.push(numeriRicordati[i]);
         }
+
     }
 
     console.log("Numeri ricordati: " + numeriRicordati);
     console.log("Numeri corretti: " + numeriCorretti);
 
 
-}, 2000);
+}, 20000);
 
 
     
