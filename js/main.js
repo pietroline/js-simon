@@ -98,7 +98,7 @@ document.getElementById("start").addEventListener("click",
             },250); 
 
 
-        }, 2000);
+        }, 30000);
     }
 
 );
