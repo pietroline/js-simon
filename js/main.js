@@ -22,7 +22,7 @@ while(numeri.length < 5){
 }
 
 
-console.log("numeri casuali: "+numeri)
+console.log("numeri casuali: " + numeri);
 
 
 //append dell'arrray numeri sul DOM
@@ -37,25 +37,28 @@ setTimeout(function(){
     //nascondo i numeri da ricordare
     document.getElementById("memorizza").classList.add("hidden");
 
-    //prelevo i numeri ricordati dall'utente
-    let numeriRicordati = [];
-    let numeriCorretti =[];
-    for(let i=0; i<5; i++){
-      
-        numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi`));
-        if(numeri.includes(numeriRicordati[i])){
-            numeriCorretti.push(numeriRicordati[i]);
+    setTimeout(function(){
+
+        //prelevo i numeri ricordati dall'utente
+        let numeriRicordati = [];
+        let numeriCorretti =[];
+        for(let i=0; i<5; i++){
+        
+            numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi`));
+            if(numeri.includes(numeriRicordati[i])){
+                numeriCorretti.push(numeriRicordati[i]);
+            }
+            console.log(numeriRicordati[i]);
         }
-        console.log(numeriRicordati[i]);
-    }
 
-    console.log("Numeri ricordati: " + numeriRicordati);
-    console.log("Numeri corretti: " + numeriCorretti);
+        console.log("Numeri ricordati: " + numeriRicordati);
+        console.log("Numeri corretti: " + numeriCorretti);
 
-    //visualizzo il risultato
-    document.getElementById("memorizzati").classList.remove("hidden");
-    document.getElementById("risultato").innerHTML += `${numeriCorretti.length} numeri`;
-    document.getElementById("numeriRicordati").innerHTML = numeriCorretti;    
+        //visualizzo il risultato
+        document.getElementById("memorizzati").classList.remove("hidden");
+        document.getElementById("risultato").innerHTML += `${numeriCorretti.length} numeri`;
+        document.getElementById("numeriRicordati").innerHTML = numeriCorretti;   
+    },250); 
 
 
 }, 2000);
