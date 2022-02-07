@@ -75,7 +75,7 @@ document.getElementById("start").addEventListener("click",
                 const numeriCorretti =[];
                 for(let i=0; i<numeroNumeri; i++){
                 
-                    numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi`));
+                    numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi \n ATTENZIONE: sono accettati solo numeri da 2 cifre, qualsiasi altro valore sarà considerato come sbagliato`));
                     if(numeri.includes(numeriRicordati[i])){
                         numeriCorretti.push(numeriRicordati[i]);
                     }
