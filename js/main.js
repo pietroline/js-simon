@@ -72,8 +72,8 @@ document.getElementById("start").addEventListener("click",
             setTimeout(() => {
 
                //prelevo i numeri ricordati dall'utente
-                let numeriRicordati = [];
-                let numeriCorretti =[];
+                const numeriRicordati = [];
+                const numeriCorretti =[];
                 for(let i=0; i<numeroNumeri; i++){
                 
                     numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi`));
