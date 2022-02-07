@@ -29,6 +29,17 @@ element.innerHTML = numeri;
 //timer 30 secondi
 setTimeout(function(){
 
+    //nascondo i numeri da ricordare
     element.classList.add("hidden");
 
+    //prelevo i numeri ricordati dall'utente
+    let numeriRicordati = [];
+    for(let i=0; i<5; i++){
+        numeriRicordati[i] = prompt(`Inserisci il ${i+1}° numero che ricordi`);
+    }
+
+
 }, 2000);
+
+
+    
