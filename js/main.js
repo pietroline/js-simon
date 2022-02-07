@@ -8,22 +8,12 @@ function random(min, max){
 
 
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------
 
+//livello(difficolta) in base alla difficoltà impostata calcola il giusto numero di numeri da ricordare
+function livello(difficolta){
 
-
-
-
-
-document.getElementById("start").addEventListener("click",
-
-    function(){
-
-        //prelevo ed elaboro informazione sulla difficoltà impostata
-        let livello = document.getElementById("livello");
-
-        let numeroNumeri;
-        switch (livello.value){
+    let numeroNumeri;
+        switch (difficolta.value){
             case "facile":
                 numeroNumeri = 5;
                 break;
@@ -37,29 +27,78 @@ document.getElementById("start").addEventListener("click",
                 numeroNumeri = 0;
         }
 
+        return numeroNumeri;
+
+}
+
+//randomAray(dimensione) ritorna un array di numeri casuali, i cui elementi, compresi tra 0 e 99, sono diversi tra loro
+function randomArray(dimensione){
+    const numeri = [];
+    while(numeri.length < dimensione){
+        let casuale = random(0,99); 
+        if(!numeri.includes(casuale)){
+            numeri.push(casuale);
+        }
+    };
+    console.log("numeri casuali: " + numeri);
+
+    return numeri;
+}
+
+//prelevaVerifica(arrayNumeri, dimensione) preleva i dati inseriti dall'utente tramite un prompt e ne verifica se contenuti in arrayNumeri
+//ritorna un array contentente i numeri che l'utente ha inserito, ricordandosi correttamente
+function prelevaVerifica(arrayNumeri, dimensione){
+
+    //prelevo i numeri ricordati dall'utente e verifico se sono tra quelli da ricordare
+    //in caso positivo li inserisco in un nuovo array di numeri ricordati correttamente
+    const numeriRicordati = [];
+    const numeriCorretti =[];
+    for(let i=0; i<dimensione; i++){
+    
+        numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi \n ATTENZIONE: sono accettati solo numeri da 2 cifre, qualsiasi altro valore sarà considerato come sbagliato`));
+        if(arrayNumeri.includes(numeriRicordati[i]) && !numeriCorretti.includes(numeriRicordati[i])){
+            numeriCorretti.push(numeriRicordati[i]);
+        }
+
+    }
+
+    console.log("Numeri ricordati: " + numeriRicordati);
+    console.log("Numeri corretti: " + numeriCorretti);
+
+    return numeriCorretti;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+document.getElementById("start").addEventListener("click",
+
+    function(){
+
+        //prelevo ed elaboro informazione sulla difficoltà impostata
+        let difficolta = document.getElementById("livello");
+        let numeroNumeri = livello(difficolta);
+
 
         //inizia il gioco, visualizzo i numeri da ricordare e rimuovo la possibilità di iniziare un nuovo gioco 
         document.getElementById("memorizza").classList.remove("hidden");
         document.getElementById("settings").classList.add("hidden");
         document.getElementById("memorizzati").classList.add("hidden"); //necessario se iniziamo una nuova partita. Non vogliamo visualizzare il risultato precedente 
 
-    
-
         
         //creo un array di elementi casuali, i quali non si ripetono all'interno dell'array
-        const numeri = [];
-        while(numeri.length < numeroNumeri){
-            let casuale = random(0,99); 
-            if(!numeri.includes(casuale)){
-                numeri.push(casuale);
-            }
-        };
-        console.log("numeri casuali: " + numeri);
+        const numeriRandom = randomArray(numeroNumeri);
 
 
         //append dell'arrray numeri sul DOM
         let element = document.getElementById("numeri");
-        element.innerHTML = numeri;
+        element.innerHTML = numeriRandom;
 
 
         //timer 30 secondi
@@ -70,20 +109,7 @@ document.getElementById("start").addEventListener("click",
 
             setTimeout(() => {
 
-               //prelevo i numeri ricordati dall'utente
-                const numeriRicordati = [];
-                const numeriCorretti =[];
-                for(let i=0; i<numeroNumeri; i++){
-                
-                    numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi \n ATTENZIONE: sono accettati solo numeri da 2 cifre, qualsiasi altro valore sarà considerato come sbagliato`));
-                    if(numeri.includes(numeriRicordati[i]) && !numeriCorretti.includes(numeriRicordati[i])){
-                        numeriCorretti.push(numeriRicordati[i]);
-                    }
-
-                }
-
-                console.log("Numeri ricordati: " + numeriRicordati);
-                console.log("Numeri corretti: " + numeriCorretti);
+               let numeriCorretti = prelevaVerifica(numeriRandom, numeroNumeri);
 
 
                 //visualizzo il risultato
