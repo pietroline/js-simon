@@ -12,7 +12,7 @@ function random(min, max){
 
 
 
-//creo un array di elementi casuali
+//creo un array di elementi casuali, i quali non si ripetono all'interno dell'array
 const numeri = [];
 while(numeri.length < 5){
     let casuale = random(0,99); 
