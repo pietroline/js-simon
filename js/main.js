@@ -70,6 +70,13 @@ function prelevaVerifica(arrayNumeri, dimensione){
 
 
 
+//30 secondi per memorizzare i numeri
+const attesa = 30000; 
+
+
+
+
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -103,28 +110,34 @@ document.getElementById("start").addEventListener("click",
 
         //timer 30 secondi
         setTimeout(() => {
-
+     
             //nascondo i numeri da ricordare
             document.getElementById("memorizza").classList.add("hidden");
 
             setTimeout(() => {
-
+                
                let numeriCorretti = prelevaVerifica(numeriRandom, numeroNumeri);
 
 
                 //visualizzo il risultato
                 document.getElementById("memorizzati").classList.remove("hidden");
                 document.getElementById("risultato").innerHTML = `Hai memorizzato correttamente ${numeriCorretti.length} numeri su ${numeroNumeri}`;
-                document.getElementById("numeriRicordati").innerHTML = "Ecco quali numeri hai ricordato: " + numeriCorretti;   
+
+                if (numeriCorretti.length != 0 && numeriCorretti.length == numeroNumeri){
+                    document.getElementById("numeriRicordati").innerHTML = "COMPLIMENTI HAI VINTO!!!! Ecco quali numeri hai ricordato: " + numeriCorretti;   
+                }else if(numeriCorretti.length != 0){
+                    document.getElementById("numeriRicordati").innerHTML = "Ecco quali numeri hai ricordato: " + numeriCorretti;   
+                }
+                
 
                 //rivisualizzo le impostazioni per iniziare un nuovo gioco
                 document.getElementById("settings").classList.remove("hidden");
 
-
+                
             },250); 
 
 
-        }, 30000);
+        }, attesa);
     }
 
 );
