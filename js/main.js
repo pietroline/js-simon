@@ -4,11 +4,31 @@ function random(max, min){
 }
 
 
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 //creo un array di elementi casuali
 const numeri = [];
 for(let i=0; i<5; i++){
     numeri[i] = random(0,99);
 }
 
+
+
 //append dell'arrray numeri sul DOM
-document.getElementById("numeri").innerHTML = numeri;
+let element = document.getElementById("numeri");
+element.innerHTML = numeri;
+
+
+
+//timer 30 secondi
+setTimeout(function(){
+
+    element.classList.add("hidden");
+
+}, 2000);
