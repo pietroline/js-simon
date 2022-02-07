@@ -12,55 +12,98 @@ function random(min, max){
 
 
 
-//creo un array di elementi casuali, i quali non si ripetono all'interno dell'array
-const numeri = [];
-while(numeri.length < 5){
-    let casuale = random(0,99); 
-    if(!numeri.includes(casuale)){
-        numeri.push(casuale);
-    }
-}
-
-
-console.log("numeri casuali: " + numeri);
-
-
-//append dell'arrray numeri sul DOM
-let element = document.getElementById("numeri");
-element.innerHTML = numeri;
 
 
 
-//timer 30 secondi
-setTimeout(function(){
+document.getElementById("start").addEventListener("click",
 
-    //nascondo i numeri da ricordare
-    document.getElementById("memorizza").classList.add("hidden");
+    function(){
 
-    setTimeout(function(){
+        //prelevo ed elaboro informazione sulla difficoltà impostata
+        let livello = document.getElementById("livello");
 
-        //prelevo i numeri ricordati dall'utente
-        let numeriRicordati = [];
-        let numeriCorretti =[];
-        for(let i=0; i<5; i++){
-        
-            numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi`));
-            if(numeri.includes(numeriRicordati[i])){
-                numeriCorretti.push(numeriRicordati[i]);
-            }
-            console.log(numeriRicordati[i]);
+        let numeroNumeri;
+        switch (livello.value){
+            case "facile":
+                numeroNumeri = 5;
+                break;
+            case "medio":
+                numeroNumeri = 7;
+                break;
+            case "difficile":
+                numeroNumeri = 9;
+                break;
+            default: 
+                numeroNumeri = 0;
         }
 
-        console.log("Numeri ricordati: " + numeriRicordati);
-        console.log("Numeri corretti: " + numeriCorretti);
 
-        //visualizzo il risultato
-        document.getElementById("memorizzati").classList.remove("hidden");
-        document.getElementById("risultato").innerHTML += `${numeriCorretti.length} numeri`;
-        document.getElementById("numeriRicordati").innerHTML = numeriCorretti;   
-    },250); 
+        //inizia il gioco, visualizzo i numeri da ricordare e rimuovo la possibilità di iniziare un nuovo gioco
+        document.getElementById("memorizza").classList.remove("hidden");
+        document.getElementById("settings").classList.add("hidden");
+        document.getElementById("memorizzati").classList.add("hidden"); //necessario se iniziamo una nuova partita. Non vogliamo visualizzare il risultato precedente 
+    
+
+    
+
+        
+        //creo un array di elementi casuali, i quali non si ripetono all'interno dell'array
+        const numeri = [];
+        while(numeri.length < numeroNumeri){
+            let casuale = random(0,99); 
+            if(!numeri.includes(casuale)){
+                numeri.push(casuale);
+            }
+        };
+        console.log("numeri casuali: " + numeri);
 
 
-}, 2000);
+        //append dell'arrray numeri sul DOM
+        let element = document.getElementById("numeri");
+        element.innerHTML = numeri;
+
+
+        //timer 30 secondi
+        setTimeout(() => {
+
+            //nascondo i numeri da ricordare
+            document.getElementById("memorizza").classList.add("hidden");
+
+            setTimeout(() => {
+
+               //prelevo i numeri ricordati dall'utente
+                let numeriRicordati = [];
+                let numeriCorretti =[];
+                for(let i=0; i<numeroNumeri; i++){
+                
+                    numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi`));
+                    if(numeri.includes(numeriRicordati[i])){
+                        numeriCorretti.push(numeriRicordati[i]);
+                    }
+
+                }
+
+                console.log("Numeri ricordati: " + numeriRicordati);
+                console.log("Numeri corretti: " + numeriCorretti);
+
+
+                //visualizzo il risultato
+                document.getElementById("memorizzati").classList.remove("hidden");
+                document.getElementById("risultato").innerHTML += `${numeriCorretti.length} numeri su ${numeroNumeri}`;
+                document.getElementById("numeriRicordati").innerHTML = "Ecco quali numeri hai ricordato: " + numeriCorretti;   
+
+                //rivisualizzo le impostazioni per iniziare un nuovo gioco
+                document.getElementById("settings").classList.remove("hidden");
+
+
+            },250); 
+
+
+        }, 2000);
+    }
+
+);
+
+
 
 
