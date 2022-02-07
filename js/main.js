@@ -1,4 +1,4 @@
-//random(max, min) ritorna un numero casuale compreso tra il max e il min inclusi 
+//random(min,max) ritorna un numero casuale compreso tra il max e il min inclusi 
 function random(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
