@@ -38,11 +38,10 @@ document.getElementById("start").addEventListener("click",
         }
 
 
-        //inizia il gioco, visualizzo i numeri da ricordare e rimuovo la possibilità di iniziare un nuovo gioco
+        //inizia il gioco, visualizzo i numeri da ricordare e rimuovo la possibilità di iniziare un nuovo gioco 
         document.getElementById("memorizza").classList.remove("hidden");
         document.getElementById("settings").classList.add("hidden");
         document.getElementById("memorizzati").classList.add("hidden"); //necessario se iniziamo una nuova partita. Non vogliamo visualizzare il risultato precedente 
-    
 
     
 
@@ -89,7 +88,7 @@ document.getElementById("start").addEventListener("click",
 
                 //visualizzo il risultato
                 document.getElementById("memorizzati").classList.remove("hidden");
-                document.getElementById("risultato").innerHTML += `${numeriCorretti.length} numeri su ${numeroNumeri}`;
+                document.getElementById("risultato").innerHTML = `Hai memorizzato correttamente ${numeriCorretti.length} numeri su ${numeroNumeri}`;
                 document.getElementById("numeriRicordati").innerHTML = "Ecco quali numeri hai ricordato: " + numeriCorretti;   
 
                 //rivisualizzo le impostazioni per iniziare un nuovo gioco
