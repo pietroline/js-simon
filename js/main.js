@@ -1,5 +1,5 @@
-//random(max, min) ritorna un numero casuale compreso tra il max e il min inclusi
-function random(max, min){
+//random(max, min) ritorna un numero casuale compreso tra il max e il min inclusi 
+function random(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
@@ -14,17 +14,13 @@ function random(max, min){
 
 //creo un array di elementi casuali
 const numeri = [];
-for(let i=0; i<5; i++){
+while(numeri.length < 5){
     let casuale = random(0,99); 
-    numeri[i] = casuale;
+    if(!numeri.includes(casuale)){
+        numeri.push(casuale);
+    }
 }
 
-// while(numeri.length < 5){
-//     let casuale = random(0,5); 
-//     if(!numeri.includes(casuale)){
-//         numeri.push(casuale);
-//     }
-// }
 
 console.log("numeri casuali: "+numeri)
 
@@ -39,7 +35,7 @@ element.innerHTML = numeri;
 setTimeout(function(){
 
     //nascondo i numeri da ricordare
-    element.classList.add("hidden");
+    document.getElementById("memorizza").classList.add("hidden");
 
     //prelevo i numeri ricordati dall'utente
     let numeriRicordati = [];
@@ -56,10 +52,12 @@ setTimeout(function(){
     console.log("Numeri ricordati: " + numeriRicordati);
     console.log("Numeri corretti: " + numeriCorretti);
 
-        
+    //visualizzo il risultato
+    document.getElementById("memorizzati").classList.remove("hidden");
+    document.getElementById("risultato").innerHTML += `${numeriCorretti.length} numeri`;
+    document.getElementById("numeriRicordati").innerHTML = numeriCorretti;    
 
 
 }, 2000);
 
 
-    
