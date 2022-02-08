@@ -55,7 +55,7 @@ function prelevaVerifica(arrayNumeri, dimensione){
     const numeriCorretti =[];
     for(let i=0; i<dimensione; i++){
     
-        numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi \n ATTENZIONE: sono accettati solo numeri da 2 cifre, qualsiasi altro valore sarà considerato come sbagliato`));
+        numeriRicordati[i] = parseInt(prompt(`Inserisci il ${i+1}° numero che ricordi \n ATTENZIONE: sono accettati solo numeri fino ad un massimo di 2 cifre, qualsiasi altro valore sarà considerato come sbagliato`));
         if(arrayNumeri.includes(numeriRicordati[i]) && !numeriCorretti.includes(numeriRicordati[i])){
             numeriCorretti.push(numeriRicordati[i]);
         }
