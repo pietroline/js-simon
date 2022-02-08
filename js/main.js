@@ -89,14 +89,14 @@ document.getElementById("start").addEventListener("click",
     function(){
 
         //prelevo ed elaboro informazione sulla difficoltà impostata
-        let difficolta = document.getElementById("livello");
-        let numeroNumeri = livello(difficolta);
+        const difficolta = document.getElementById("livello");
+        const numeroNumeri = livello(difficolta);
 
 
         //inizia il gioco, visualizzo i numeri da ricordare e rimuovo la possibilità di iniziare un nuovo gioco 
         document.getElementById("memorizza").classList.remove("hidden");
         document.getElementById("settings").classList.add("hidden");
-        document.getElementById("memorizzati").classList.add("hidden"); //necessario se iniziamo una nuova partita. Non vogliamo visualizzare il risultato precedente 
+        document.getElementById("memorizzati").classList.add("hidden"); //necessario quando iniziamo una nuova partita. Non vogliamo visualizzare il risultato precedente 
 
         
         //creo un array di elementi casuali, i quali non si ripetono all'interno dell'array
@@ -104,7 +104,7 @@ document.getElementById("start").addEventListener("click",
 
 
         //append dell'arrray numeri sul DOM
-        let element = document.getElementById("numeri");
+        const element = document.getElementById("numeri");
         element.innerHTML = numeriRandom;
 
 
@@ -116,8 +116,7 @@ document.getElementById("start").addEventListener("click",
 
             setTimeout(() => {
                 
-               let numeriCorretti = prelevaVerifica(numeriRandom, numeroNumeri);
-
+                let numeriCorretti = prelevaVerifica(numeriRandom, numeroNumeri);
 
                 //visualizzo il risultato
                 document.getElementById("memorizzati").classList.remove("hidden");
@@ -125,7 +124,7 @@ document.getElementById("start").addEventListener("click",
 
                 if (numeriCorretti.length != 0 && numeriCorretti.length == numeroNumeri){
                     document.getElementById("numeriRicordati").innerHTML = "COMPLIMENTI HAI VINTO!!!! Ecco quali numeri hai ricordato: " + numeriCorretti;   
-                }else if(numeriCorretti.length != 0){
+                }else if(numeriCorretti.length != 0 && numeriCorretti != NaN){
                     document.getElementById("numeriRicordati").innerHTML = "Ecco quali numeri hai ricordato: " + numeriCorretti;   
                 }
                 
